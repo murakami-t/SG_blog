@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @blog.title %>
+</p>
+
+<%= link_to 'Edit', edit_blog_path(@blog) %> |
+<%= link_to 'Back', blogs_path %>
+
+<h2>entries</h2>
+ <%= render @blog.entries %>
+
+
+<p><%= link_to 'New entry', new_blog_entry_path(@blog) %></p>

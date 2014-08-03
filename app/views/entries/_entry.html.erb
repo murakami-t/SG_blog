@@ -1,0 +1,11 @@
+<p>
+  <%=entry.title %>
+
+  <%=entry.body %>
+</p>
+
+<p>
+  <%= link_to 'Destroy Comment', [entry.blog, entry],
+               :confirm => 'Are you sure?',
+               :method => :delete %>
+</p>
