@@ -32,6 +32,8 @@ group :development do
   gem 'hirb-unicode'
 end
 
+gem 'bootstrap-sass', '2.3.2.0'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

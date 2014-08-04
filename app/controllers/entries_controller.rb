@@ -1,12 +1,6 @@
 class EntriesController < ApplicationController
   before_action :set_entry, only: [:show, :edit, :update, :destroy]
 
-  # GET /entries
-  # GET /entries.json
-  def index
-    @entries = Entry.all
-  end
-
   # GET /entries/1
   # GET /entries/1.json
   def show
@@ -64,7 +58,7 @@ class EntriesController < ApplicationController
   # DELETE /entries/1.json
   def destroy
     @blog = Blog.find(params[:blog_id])
-    @entry =  @blog.entries.find(params[:id])
+    #@entry =  @blog.entries.find(params[:id])
     @entry.destroy
     respond_to do |format|
       format.html { redirect_to blog_path(@blog), notice: 'Entry was successfully destroyed.' }
@@ -76,8 +70,8 @@ class EntriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_entry
-      @entry = Entry.find(params[:id])
-
+    @entry = Entry.find(params[:id])
+  
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
