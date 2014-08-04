@@ -1,8 +1,11 @@
-<p>
-  <%=entry.title %>
 
-  <%=entry.body %>
-</p>
+<table class="table">
+	
+		<tr>
+			<td><%= entry.title %></td>
+			<td><%= entry.body %></td>
+		</tr>
+</table>
 
 <p>
   <%= link_to 'Destroy Comment', [entry.blog, entry],

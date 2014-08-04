@@ -10,10 +10,6 @@
   <%= @entry.body %>
 </p>
 
-<p>
-  <strong>Blog:</strong>
-  <%= @entry.blog %>
-</p>
 
-<%= link_to 'Edit', edit_entry_path(@entry) %> |
-<%= link_to 'Back', entries_path %>
+<%= link_to 'Edit', edit_blog_entry_path(@entry.blog_id, @entry) %> |
+<%= link_to 'Back', blog_path(@entry.blog_id) %>

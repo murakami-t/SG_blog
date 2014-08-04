@@ -14,8 +14,11 @@ class EntriesController < ApplicationController
 
   # GET /entries/new
   def new
-    @blog = Blog.find(params[:blog_id])
-    @entry =  @blog.entries.new
+    #@blog = Blog.find(params[:blog_id])
+    #@entry =  @blog.entries.new
+    blog = Blog.find(params[:blog_id])
+    @entry = Entry.new
+    @entry.blog = blog
   end
 
   # GET /entries/1/edit
@@ -26,12 +29,14 @@ class EntriesController < ApplicationController
   # POST /entries.json
   def create
     #@blog = Blog.find(params[:blog_id])
-    @entry =  @blog.entries.create(params[:entry_params])
+    #@entry =  @blog.entries.new(params[:entry_params])
+    @entry = Entry.new(entry_params)
 
     respond_to do |format|
       if @entry.save
-        format.html { redirect_to blog_path(@blog), notice: 'entry was successfully created.' }
-        format.json { render :show, status: :created, location: @blog.entries }
+        #format.html { redirect_to blog_path(@blog), notice: 'entry was successfully created.' }
+        format.html { redirect_to blog_entry_path(@entry.blog_id, @entry.id), notice: 'Entry was successfully created.' }
+        format.json { render :show, status: :created, location: @entry }
       else
         format.html { render :new }
         format.json { render json: @blog.errors, status: :unprocessable_entity }
@@ -77,7 +82,7 @@ class EntriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def entry_params
-      params.require(:entry).permit(:title, :body)
+      params.require(:entry).permit(:title, :body, :blog_id)
     end
 end
 
