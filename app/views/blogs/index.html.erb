@@ -1,5 +1,6 @@
 <h1>Listing blogs</h1>
-
+<h2>Blogs</h2>
+<center>
 <table>
   <thead>
     <tr>
@@ -15,11 +16,12 @@
         <td><%= link_to 'Show', blog %></td>
         <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
         <td><%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= blog.title.html_safe%></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+</center>
 <br>
 
-<%= link_to 'New Blog', new_blog_path %>
+<%= link_to '新しいブログを作成', new_blog_path %>

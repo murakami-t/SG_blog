@@ -1,10 +1,8 @@
 
-<table class="table">
-		<tr>
-			<td><%= entry.title %></td>
-			<td><%= entry.body %></td>
-		</tr>
-</table>
+<p>
+	<%= entry.title %>
+	<%= entry.body %>
+</p>
 
 <p>
 	<%= link_to 'Edit', edit_blog_entry_path(entry.blog, entry) %> 
