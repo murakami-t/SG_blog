@@ -1,22 +1,20 @@
 class EntriesController < ApplicationController
-  before_action :set_entry, only: [:show, :edit, :update, :destroy]
+  before_action :set_entry, only: [:show, :edit, :update, :destroy, :new]
 
   # GET /entries/1
   # GET /entries/1.json
   def show
+    @entry = @blog.entries.find(params[:id])
   end
 
   # GET /entries/new
   def new
-    #@blog = Blog.find(params[:blog_id])
-    #@entry =  @blog.entries.new
-    blog = Blog.find(params[:blog_id])
-    @entry = Entry.new
-    @entry.blog = blog
+    @entry = @blog.entries.build
   end
 
   # GET /entries/1/edit
   def edit
+    @entry = @blog.entries.find(params[:id])
   end
 
   # POST /entries
@@ -43,11 +41,11 @@ class EntriesController < ApplicationController
   # PATCH/PUT /entries/1
   # PATCH/PUT /entries/1.json
   def update
-    @blog = blog.find(params[:user_id])
-    @wentry = @blog.entries.build(params[:id])
+    @entry = @blog.entries.find(params[:id])
+
     respond_to do |format|
       if @entry.update(entry_params)
-        format.html { redirect_to @entry, notice: 'Entry was successfully updated.' }
+        format.html { redirect_to blog_path(@blog), notice: 'Entry was successfully updated.' }
         format.json { render :show, status: :ok, location: @entry }
       else
         format.html { render :edit }
@@ -59,8 +57,7 @@ class EntriesController < ApplicationController
   # DELETE /entries/1
   # DELETE /entries/1.json
   def destroy
-    @blog = Blog.find(params[:blog_id])
-    #@entry =  @blog.entries.find(params[:id])
+    @entry = @blog.entries.find(params[:id])
     @entry.destroy
     respond_to do |format|
       format.html { redirect_to blog_path(@blog), notice: 'Entry was successfully destroyed.' }
@@ -72,7 +69,7 @@ class EntriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_entry
-    @entry = Entry.find(params[:id])
+    @blog = Blog.find(params[:blog_id])
   
     end
 
